@@ -1,0 +1,4 @@
+request
+django
+django-webpack-loader
+gunicorn
