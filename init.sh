@@ -14,10 +14,10 @@ venv() {
 
 install() {
   pip3 install -U -r requirements.txt
+  python manage.py migrate
 }
 
 host() {
-  python manage.py migrate
   ps aux | grep -i runserver | grep -v "grep"  | awk '{print $2}' | xargs -I {} kill -9 {}
   python manage.py runserver $HOST:$PORT
 }
@@ -25,7 +25,12 @@ host() {
 case "$1" in
   venv)
     venv
-    bash --rcfile $HOME/.bash_profile 
+    source $HOME/.bash_profile
+    bash --rcfile $ACTIVATE 
+    ;;
+  i)
+    venv
+    install
     ;;
   host)
     venv
@@ -33,7 +38,7 @@ case "$1" in
     host 
     ;;
   *)
-    echo "./init [host|venv|install]" 
+    echo "./init [host|venv|i]" 
     exit
 esac
 
