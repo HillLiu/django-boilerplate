@@ -9,7 +9,7 @@ import PageFooter from '../organisms/PageFooter';
 import TwoColumn from '../templates/TwoColumn';
 import ThreeColumn from '../templates/ThreeColumn';
 
-const UploadTemplate = ({tpl, style, ...rest}) => {
+const HelloWorldTemplate = ({tpl, style, ...rest}) => {
     injects = lazyInject( injects, InjectStyles );
     switch(tpl)
     {
@@ -41,7 +41,7 @@ const UploadTemplate = ({tpl, style, ...rest}) => {
     }
 };
 
-export default UploadTemplate;
+export default HelloWorldTemplate;
 
 const Styles = {
     container: {
