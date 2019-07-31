@@ -1,4 +1,6 @@
 request
 django
 django-webpack-loader
+django-cors-headers
 gunicorn
+whitenoise
