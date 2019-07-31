@@ -22,7 +22,7 @@ from django.conf.urls import url, include
 appPatterns = []
 
 for v in settings.APPS_URL:
-    appPatterns.append(url(r''+v['prefix'], include(v['app']+'.urls')))
+    appPatterns.append(url(r''+v.get('prefix',''), include(v.get('app')+'.urls')))
 
 urlpatterns = [
     path('admin/', admin.site.urls),
