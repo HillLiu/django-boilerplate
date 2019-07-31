@@ -142,4 +142,4 @@ WEBPACK_LOADER = {
 
 LOGIN_REDIRECT_URL = '/'
 
-APPS_URL = [{"prefix": 'sa', "app": 'sample'}]
+APP_URL_PATTERNS = [{"prefix": 'sa', "app": 'sample'}]

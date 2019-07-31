@@ -21,7 +21,7 @@ from django.conf.urls import url, include
 
 appPatterns = []
 
-for v in settings.APPS_URL:
+for v in settings.APP_URL_PATTERNS:
     appPatterns.append(url(r''+v.get('prefix',''), include(v.get('app')+'.urls')))
 
 urlpatterns = [
