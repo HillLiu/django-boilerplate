@@ -1,6 +1,7 @@
 import React from 'react';
 import { mixClass, lazyInject, Menu, Item } from 'react-atomic-molecule';
 import get from 'get-object-value';
+import {doc} from 'win-doc';
 
 const keys = Object.keys;
 
@@ -18,12 +19,11 @@ const PageNav = ({className, style, menus}) => {
         {
             keys(get(menus, ['text'], [])).map(key => { 
                 let href = get(menus, ['href', key]);
-                let style;
-                if ('undefined' !== document && document.location.pathname === href) {
-                    style = Styles.active;
-                    href = null;
-                }
-                return <NavItem style={style} key={key} href={href}>{get(menus, ['text', key])}</NavItem>
+                const classes = mixClass({
+                  active: doc().location && doc().location.pathname === href 
+                });
+                
+                return <NavItem className={classes} key={key} href={href}>{get(menus, ['text', key])}</NavItem>
             })
         }
         </Menu>
@@ -42,9 +42,6 @@ const Styles = {
         fontWeight: 700,
         color: '#4c4c4c',
     },
-    active: {
-        color: '#3f6bbe'
-    }
 };
 
 let injects;
@@ -54,5 +51,11 @@ const InjectStyles = {
            color: '#3f6bbe !important'
 	},
 	'.page-header nav a:hover'
+    ],
+    active: [
+        {
+          color: '#3f6bbe !important'
+        },
+        '.page-header nav.ui.text.menu a.active.item'
     ]
 };

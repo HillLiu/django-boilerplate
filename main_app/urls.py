@@ -28,4 +28,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", HomePage.as_view(), {"themePath": "Home"}),
     path("conf/", Configure.as_view()),
+    url(r"^i18n/", include("django.conf.urls.i18n")),
 ] + appPatterns

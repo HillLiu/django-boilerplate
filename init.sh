@@ -4,7 +4,8 @@ DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 HOST=`${DIR}/support/host.sh`
 PORT=`${DIR}/support/port.sh`
 
-ACTIVATE=".venv/default/bin/activate"
+ACTIVATE="$DIR/.venv/default/bin/activate"
+echo $ACTIVATE
 
 venv() {
   echo "Venv --- start"
@@ -27,6 +28,9 @@ host() {
 }
 
 case "$1" in
+  source-venv)
+    venv
+    ;;
   venv)
     venv
     source $HOME/.bash_profile
