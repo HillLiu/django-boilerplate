@@ -9,6 +9,7 @@
     "organism-react-ajax": "*",
     "organism-react-popup": "*",
     "organism-react-progress": "*",
+    "organism-react-navigation": "*",
     "parse-ini-string": "*",
     "pmvc_react_landing": "*",
     "react": "^16.x",
