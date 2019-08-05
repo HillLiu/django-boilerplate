@@ -10,9 +10,11 @@ import ini from 'parse-ini-string';
 import {nest} from 'object-nested';
 
 import Home from '../pages/Home';
+import Register from '../pages/Register';
 
 const themes = {
   Home,
+  Register
 };
 
 class Index extends PureComponent {
