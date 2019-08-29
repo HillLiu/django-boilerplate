@@ -5,10 +5,15 @@ import json
 
 # Create your views here.
 
+def getContext(data, form):
+    data["form"] = form.as_ul() 
+    context = { "context_data": json.dumps(data), }
+    return context
+
 def register(request):
     context_data = {
-            "themePath": "Register" 
-            }
+       "themePath": "Register" 
+    }
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         print("Errors", form.errors)
@@ -16,9 +21,6 @@ def register(request):
             form.save()
             return redirect("")
         else:
-            return render(request, "site.html", {"form": form})
+            return render(request, "site.html", getContext(context_data, form))
     else:
-        form = UserCreationForm()
-        context_data["form"] = form.as_ul() 
-        context = { "context_data": json.dumps(context_data), }
-        return render(request, "site.html", context)
+        return render(request, "site.html", getContext(context_data, UserCreationForm()))
