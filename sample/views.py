@@ -1,5 +1,6 @@
 from django.http import HttpResponse
-
+from .func import get_hello 
 
 def index(request):
-    return HttpResponse("Hello, sample. You're at the sample index.")
+    hello=get_hello()
+    return HttpResponse(hello)
