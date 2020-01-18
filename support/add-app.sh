@@ -1,2 +1,2 @@
 #!/bin/bash
-python -m django startapp $1 
+python3 -m django startapp $1 

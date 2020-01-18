@@ -1,2 +1,2 @@
 #!/bin/bash
-python -m django --version
+python3 -m django --version
