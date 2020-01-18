@@ -33,16 +33,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'corsheaders',
-    'frontpage',
-    'webpack_loader',
-    'sample'
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "corsheaders",
+    "webpack_loader",
+    "frontpage",
+    "sample",
+    "status",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -150,4 +152,7 @@ WEBPACK_LOADER = {
 
 LOGIN_REDIRECT_URL = '/'
 
-APP_URL_PATTERNS = [{"prefix": 'sa', "app": 'sample'}]
+APP_URL_PATTERNS = [
+  {'prefix': 'sample/', 'app': 'sample'},
+  {'prefix': '', 'app': 'status'}
+]
