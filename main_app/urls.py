@@ -26,6 +26,7 @@ for v in settings.APP_URL_PATTERNS:
 
 urlpatterns = [
     path("", HomePage.as_view(), {"themePath": "Home"}),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path("conf/", Configure.as_view()),
     url(r"^i18n/", include("django.conf.urls.i18n")),

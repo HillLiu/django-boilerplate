@@ -24,7 +24,7 @@ install() {
 host() {
   ps aux | grep -i runserver | grep -v "grep"  | awk '{print $2}' | xargs -I {} kill -9 {}
   python3 manage.py migrate
-  python3 manage.py runserver $HOST:$PORT
+  STATUS=1 python3 manage.py runserver $HOST:$PORT
 }
 
 case "$1" in

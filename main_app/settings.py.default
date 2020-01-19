@@ -151,6 +151,7 @@ WEBPACK_LOADER = {
 }
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 APP_URL_PATTERNS = [
   {'prefix': 'sample/', 'app': 'sample'},
