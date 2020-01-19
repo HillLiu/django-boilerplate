@@ -14,10 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from frontpage.views import HomePage, Configure
 from django.conf import settings
-from django.conf.urls import url, include
+from django.conf.urls import url
+from django.urls import path, include
+from frontpage.views import HomePage, Configure
 
 appPatterns = []
 
@@ -25,9 +25,9 @@ for v in settings.APP_URL_PATTERNS:
     appPatterns.append(url(r''+v.get('prefix',''), include(v.get('app')+'.urls')))
 
 urlpatterns = [
-    path("", HomePage.as_view(), {"themePath": "Home"}),
+    path('', HomePage.as_view(), {'themePath': 'Home'}),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path("conf/", Configure.as_view()),
-    url(r"^i18n/", include("django.conf.urls.i18n")),
+    url(r"^i18n/", include('django.conf.urls.i18n')),
 ] + appPatterns
