@@ -25,8 +25,8 @@ for v in settings.APP_URL_PATTERNS:
     appPatterns.append(url(r''+v.get('prefix',''), include(v.get('app')+'.urls')))
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path("", HomePage.as_view(), {"themePath": "Home"}),
+    path('admin/', admin.site.urls),
     path("conf/", Configure.as_view()),
     url(r"^i18n/", include("django.conf.urls.i18n")),
 ] + appPatterns
