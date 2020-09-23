@@ -17,12 +17,17 @@ class HomePage(TemplateView):
         context['context_data'] = json.dumps(contextData)
         return context
 
-
 class Configure(TemplateView):
     template_name = 'conf.ini'
 
     def get_context_data(self, **kwargs):
-        import json
-
         context = super().get_context_data(**kwargs)
         return context
+
+    def render_to_response(self, context, **response_kwargs):
+        from django.utils.translation import activate, LANGUAGE_SESSION_KEY
+        if self.request.GET.get('l', None):
+            self.request.session[LANGUAGE_SESSION_KEY] = self.request.GET['l']
+            activate(self.request.GET['l'])
+
+        return super().render_to_response(context, **response_kwargs)

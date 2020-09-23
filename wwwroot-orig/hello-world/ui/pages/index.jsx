@@ -11,6 +11,7 @@ import {nest} from 'object-nested';
 
 import Home from '../pages/Home';
 import Register from '../pages/Register';
+import getLanguage from '../../src/getLanguage';
 
 const themes = {
   Home,
@@ -19,10 +20,12 @@ const themes = {
 
 class Index extends PureComponent {
   componentDidMount() {
+    const l = getLanguage();
+    const configUrl = '/conf/' + (l ? '?l=' + l : '');
     ajaxDispatch({
       type: 'ajaxGet',
       params: {
-        url: '/conf/',
+        url: configUrl,
         callback: (json, text) => {
           const configs = nest(ini(text), '_');
           update(configs);
