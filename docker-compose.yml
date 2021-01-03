@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  web:
+    image: hillliu/django-slim:app
+    command: python manage.py runserver 0.0.0.0:8000
+    working_dir: /app
+    volumes:
+    - .:/app:delegated
+    ports:
+      - "${WEB_PORT-8000}:8000"
+  worker:
+    image: hillliu/django-slim:app
+  rabbitmq:
+    hostname: rabbitmq
+    image: rabbitmq:management-alpine 
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
+      - RABBITMQ_ERLANG_COOKIE=rabbitmq
+      - RABBITMQ_DEFAULT_VHOST=/
