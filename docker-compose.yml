@@ -11,11 +11,17 @@ services:
       - "${WEB_PORT-8000}:8000"
   worker:
     image: hillliu/django-slim:app
+    command: celery -A main_app worker -l info 
+    working_dir: /app
+    environment:
+      - DJANGO_SETTINGS_MODULE=main_app.settings
+    volumes:
+    - .:/app:delegated
   rabbitmq:
     hostname: rabbitmq
     image: rabbitmq:management-alpine 
     environment:
-      - RABBITMQ_DEFAULT_USER=rabbitmq
-      - RABBITMQ_DEFAULT_PASS=rabbitmq
-      - RABBITMQ_ERLANG_COOKIE=rabbitmq
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_ERLANG_COOKIE=12345
       - RABBITMQ_DEFAULT_VHOST=/
