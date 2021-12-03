@@ -133,3 +133,4 @@ celerybeat.*
 credentials.json
 
 .vscode/
+sample/migrations/0001_initial.py

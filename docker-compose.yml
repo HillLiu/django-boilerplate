@@ -1,6 +1,19 @@
 version: '3'
 
 services:
+  pgsql:
+    image: postgres:11
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  adminer:
+    image: adminer
+    ports:
+      - "9180:8080"
+    volumes:
+    - ./db.sqlite3:/tmp/db.sqlite3:delegated
+    - ./docker/login.php:/var/www/html/plugins-enabled/login.php:delegated
+
   web:
     image: hillliu/django-slim:app
     command: python manage.py runserver 0.0.0.0:8000
@@ -9,6 +22,7 @@ services:
     - .:/app:delegated
     ports:
       - "${WEB_PORT-8000}:8000"
+
   worker:
     image: hillliu/django-slim:app
     command: celery -A main_app worker -l info 
@@ -17,11 +31,12 @@ services:
       - DJANGO_SETTINGS_MODULE=main_app.settings
     volumes:
     - .:/app:delegated
+
   rabbitmq:
-    hostname: rabbitmq
     image: rabbitmq:management-alpine 
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
       - RABBITMQ_ERLANG_COOKIE=12345
       - RABBITMQ_DEFAULT_VHOST=/
+
