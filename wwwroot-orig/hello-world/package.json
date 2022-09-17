@@ -13,29 +13,30 @@
     "organism-react-progress": "*",
     "parse-ini-string": "*",
     "pmvc_react_landing": "*",
-    "react": "^16.x",
     "react-atomic-molecule": "*",
     "react-atomic-organism": "*",
-    "react-dom": "^16.x",
     "reshow": "*",
     "reshow-app": "*",
     "to-percent-js": "*",
     "win-doc": "*"
   },
   "devDependencies": {
-    "chai": "*",
-    "enzyme": "*",
-    "enzyme-adapter-react-16": "*",
-    "jsdom": "*",
-    "jsdom-global": "*",
-    "mocha": "*",
-    "react-test-renderer": "*"
+    "react": "^18.x",
+    "react-dom": "^18.x",
+    "reshow-unit": "*"
   },
   "scripts": {
-    "clean": "find ./build ./assets -name '*.*' | xargs rm -rf",
-    "build": "npm run clean && BABEL_ENV=build babel ui -d build/ui && BABEL_ENV=build babel src -d build/src",
-    "prepublishOnly": "npm run build",
-    "build:test": "BABEL_ENV=test babel ui -d build/test/ui && BABEL_ENV=test babel src -d build/test/src",
-    "test": "npm run build:test && mocha 'build/test/**/__tests__/*.js' -r jsdom-global/register"
+    "update-compile-sh": "yo reshow:compile-sh",
+    "webpack": "webpack",
+    "start": "ws",
+    "format": "prettier-eslint --write 'src/**/*.js' 'ui/**/*.js*'",
+    "clean:webpack": "find ./assets -name '*.*' | xargs rm -rf",
+    "clean": "find ./build -name '*.*' | xargs rm -rf",
+    "build:es": "BABEL_ENV=es babel src -d build/es/src --out-file-extension .mjs",
+    "build": "npm run clean && npm run build:es",
+    "mochaFor": "mocha -r global-jsdom/register",
+    "mocha": "npm run mochaFor -- 'build/es/**/__tests__/*.mjs'",
+    "test": "npm run build && npm run mocha",
+    "prepublishOnly": "exit 1;"
   }
 }

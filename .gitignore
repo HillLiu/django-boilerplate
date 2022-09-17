@@ -122,6 +122,7 @@ frontpage/migrations/__pycache__/
 
 .DS_Store
 .*.sw?
+webpack.pid
 node_modules
 .config/
 .npm/

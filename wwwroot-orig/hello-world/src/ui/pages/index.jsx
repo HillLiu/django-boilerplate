@@ -11,7 +11,7 @@ import {nest} from 'object-nested';
 
 import Home from '../pages/Home';
 import Register from '../pages/Register';
-import getLanguage from '../../src/getLanguage';
+import getLanguage from '../../getLanguage';
 
 const themes = {
   Home,

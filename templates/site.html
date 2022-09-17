@@ -12,17 +12,12 @@
 <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 <!--Favicon End -->
 
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss@1.0.0/build/base-min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss@1.0.0/build/grids-min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss@1.0.0/build/grids-responsive-min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/combine/npm/purecss@2.1.0/build/base-min.css,npm/purecss@2.1.0/build/grids-min.css,npm/purecss@2.1.0/build/grids-responsive-min.css">
 </head>
 <body>
     <div id="app"></div>
 </body>
 </html>
-<script src="//cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/moment@2.20.1/locale/zh-tw.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/d3@5.9.2/dist/d3.min.js"></script>
 <script>
     var REACT_DATA = '{{ context_data | escapejs }}';
     if (REACT_DATA) {
@@ -32,27 +27,5 @@
     }
 </script>
 {% block jsonData %}{% endblock %}
+{% render_bundle 'lib' %}
 {% render_bundle 'vendor' %}
-
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-container@latest/container.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-menu@latest/menu.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-table@latest/table.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-header@latest/header.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-button@latest/button.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-card@latest/card.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-form@latest/form.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-rail@latest/rail.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-segment@latest/segment.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-image@latest/image.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-breadcrumb@latest/breadcrumb.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-tab@latest/tab.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-list@latest/list.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-label@latest/label.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-step@latest/step.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-modal@latest/modal.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-dimmer@latest/dimmer.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-dropdown@latest/dropdown.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-checkbox@latest/checkbox.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-message@latest/message.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-popup@latest/popup.min.css">
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/semantic-ui-search@latest/search.min.css">
