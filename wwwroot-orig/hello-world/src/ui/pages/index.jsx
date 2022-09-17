@@ -1,37 +1,21 @@
-import React, {PureComponent} from 'react';
-import Reshow, {update, ReshowMessage} from 'reshow';
-import {PopupPool} from 'organism-react-popup';
-import {PageLoadProgressHandler} from 'organism-react-progress';
+import React, { PureComponent } from "react";
+import Reshow, { ReshowMessage } from "reshow";
+import { PopupPool } from "organism-react-popup";
+import { PageLoadProgressHandler } from "organism-react-progress";
 
-// config
-import {ajaxDispatch} from 'organism-react-ajax';
-import getCookie from 'get-cookie';
-import ini from 'parse-ini-string';
-import {nest} from 'object-nested';
-
-import Home from '../pages/Home';
-import Register from '../pages/Register';
-import getLanguage from '../../getLanguage';
+import Home from "../pages/Home";
+import Register from "../pages/Register";
+import getLanguage from "../../getLanguage";
+import getConfig from "../../getConfig";
 
 const themes = {
   Home,
-  Register
+  Register,
 };
 
 class Index extends PureComponent {
   componentDidMount() {
-    const l = getLanguage();
-    const configUrl = '/conf/' + (l ? '?l=' + l : '');
-    ajaxDispatch({
-      type: 'ajaxGet',
-      params: {
-        url: configUrl,
-        callback: (json, text) => {
-          const configs = nest(ini(text), '_');
-          update(configs);
-        },
-      },
-    });
+    getConfig(getLanguage());
   }
 
   render() {
@@ -41,7 +25,7 @@ class Index extends PureComponent {
         <Reshow immutable={true} themes={themes} {...props} />
         <PopupPool />
         <PageLoadProgressHandler ajax zIndex={1000} />
-        <ReshowMessage defaultAlertProps={{position: 'bottom'}} />
+        <ReshowMessage defaultAlertProps={{ position: "bottom" }} />
       </div>
     );
   }

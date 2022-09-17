@@ -1,33 +1,16 @@
 import React, { PureComponent } from "react";
-import { Section, update } from "reshow";
+import { Section } from "reshow";
 import { Menu, Item } from "react-atomic-molecule";
 import get from "get-object-value";
-import getCookie from "get-cookie";
 import { Dropdown } from "organism-react-navigation";
-import { ajaxDispatch } from "organism-react-ajax";
-import ini from "parse-ini-string";
-import { nest } from "object-nested";
+import getConfig from "../../getConfig";
 
 const keys = Object.keys;
 
 class Body extends PureComponent {
   handleClick(itemKey) {
     const { options } = this.props;
-    ajaxDispatch({
-      type: "ajaxPost",
-      params: {
-        url: "/i18n/setlang/",
-        headers: { "X-CSRFToken": getCookie("csrftoken") },
-        query: {
-          language: get(options, ["key", itemKey]),
-          next: "/conf/",
-        },
-        callback: (json, text) => {
-          const configs = nest(ini(text), "_");
-          update(configs);
-        },
-      },
-    });
+    getConfig(get(options, ["key", itemKey]));
   }
 
   render() {

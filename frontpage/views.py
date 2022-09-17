@@ -1,7 +1,7 @@
-from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
 from django.utils.decorators import method_decorator
+from django.conf import settings
 
 
 @method_decorator(never_cache, name='dispatch')
@@ -26,8 +26,20 @@ class Configure(TemplateView):
 
     def render_to_response(self, context, **response_kwargs):
         from django.utils.translation import activate, LANGUAGE_SESSION_KEY
+        response = super().render_to_response(context, **response_kwargs)
         if self.request.GET.get('l', None):
-            self.request.session[LANGUAGE_SESSION_KEY] = self.request.GET['l']
-            activate(self.request.GET['l'])
+            lang_code = self.request.GET['l']
+            self.request.session[LANGUAGE_SESSION_KEY] = lang_code
+            activate(lang_code)
+            response.set_cookie(
+                settings.LANGUAGE_COOKIE_NAME,
+                lang_code,
+                max_age=settings.LANGUAGE_COOKIE_AGE,
+                path=settings.LANGUAGE_COOKIE_PATH,
+                domain=settings.LANGUAGE_COOKIE_DOMAIN,
+                secure=settings.LANGUAGE_COOKIE_SECURE,
+                httponly=settings.LANGUAGE_COOKIE_HTTPONLY,
+                samesite=settings.LANGUAGE_COOKIE_SAMESITE,
+            )
 
-        return super().render_to_response(context, **response_kwargs)
+        return response
