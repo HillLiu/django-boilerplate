@@ -1,0 +1,3 @@
+[submodule "wwwroot-orig/hello_react"]
+	path = wwwroot-orig/hello_react
+	url = https://github.com/pmvc-theme/hello_react

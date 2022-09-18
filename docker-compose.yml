@@ -16,12 +16,15 @@ services:
 
   web:
     image: hillliu/django-slim:app
-    command: python manage.py runserver 0.0.0.0:8000
+    command: /app/docker/run_web.sh
     working_dir: /app
     volumes:
+    - python_lib:/app/.cache/pip
     - .:/app:delegated
     ports:
-      - "${WEB_PORT-8000}:8000"
+    - "${WEB_PORT-8000}:8000"
+    environment:
+    - PIP_CACHE_DIR=/app/.cache/pip
 
   worker:
     image: hillliu/django-slim:app
@@ -40,3 +43,5 @@ services:
       - RABBITMQ_ERLANG_COOKIE=12345
       - RABBITMQ_DEFAULT_VHOST=/
 
+volumes:
+  python_lib: {}
