@@ -1,0 +1,1 @@
+../wwwroot-orig/hello_react/service-worker.js

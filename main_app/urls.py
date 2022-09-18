@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls import url
 from django.urls import path, include
+from django.views.generic import TemplateView
 from frontpage.views import HomePage, Configure
 
 appPatterns = []
@@ -30,4 +31,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("conf/", Configure.as_view()),
     url(r"^i18n/", include('django.conf.urls.i18n')),
+    url(r"^workbox-.*.js", TemplateView.as_view(
+        template_name="workbox.js", content_type='text/javascript')),
+    path("service-worker.js", TemplateView.as_view(
+        template_name="service-worker.js", content_type='text/javascript')),
 ] + appPatterns
